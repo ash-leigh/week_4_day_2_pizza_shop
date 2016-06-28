@@ -1,0 +1,45 @@
+require( 'minitest/autorun' )
+require_relative( '../models/pizza' )
+
+class TestPizza < MiniTest::Test
+
+  # def setup
+  #   @pizza = Pizza.new( 'Tony', 'Goncalves' )
+  # end
+
+  def setup
+    options = {
+      'first_name' => 'Tony', 
+      'last_name' => 'Goncalves', 
+      'topping' => 'Calzone', 
+      'quantity' => '10'
+    }
+    @pizza = Pizza.new( options )
+  end
+
+  def test_first_name()
+    assert_equal( 'Tony', @pizza.first_name() )
+  end
+
+  def test_second_name()
+    assert_equal( 'Goncalves', @pizza.last_name() )
+  end
+
+  def test_pretty_name()
+    assert_equal( 'Tony Goncalves', @pizza.pretty_name() )
+  end
+
+  def test_topping()
+    assert_equal( 'Calzone', @pizza.topping() )
+  end
+
+  def test_quantity()
+    assert_equal( Fixnum, @pizza.quantity().class )
+    assert_equal( 10, @pizza.quantity() )
+  end
+
+  def test_total()
+    assert_equal(120, @pizza.total)
+  end
+
+end
